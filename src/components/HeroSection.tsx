@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { FaJava, FaDocker, FaReact, FaGitAlt } from "react-icons/fa";
 import { SiSpringboot, SiApachekafka, SiKubernetes, SiRedis, SiMysql, SiMongodb } from "react-icons/si";
 import { ReactNode } from "react";
+import LightRays from "./LightRays";
 
 interface FloatingIcon {
   icon: ReactNode;
