@@ -1,6 +1,6 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Globe, Shield, CreditCard, Radio, Zap, Database, Server, Play, Pause, RotateCcw } from "lucide-react";
+import { Globe, Shield, CreditCard, Radio, Zap, Database, Server } from "lucide-react";
 
 const nodes = [
   { id: "client", label: "Client App", icon: Globe, desc: "Browser / Mobile" },
