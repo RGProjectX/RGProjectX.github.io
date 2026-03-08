@@ -1,4 +1,4 @@
-import { MapPin, CreditCard, Hotel, Code2, Layers, GitBranch, Database } from "lucide-react";
+import { MapPin, CreditCard, Briefcase, Code2, Layers, Database } from "lucide-react";
 import { FaJava, FaReact, FaDocker } from "react-icons/fa";
 import { SiSpringboot, SiApachekafka, SiKubernetes, SiRedis } from "react-icons/si";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -18,7 +18,7 @@ const BentoGridSection = () => (
             <div className="space-y-3">
               {[
                 { icon: CreditCard, label: "Fintech & Payments" },
-                { icon: Hotel, label: "SaaS Products" },
+                { icon: CreditCard, label: "SaaS Products" },
                 { icon: Database, label: "Distributed Systems" },
               ].map((d) => (
                 <div key={d.label} className="flex items-center gap-2.5">
@@ -55,21 +55,21 @@ const BentoGridSection = () => (
           </div>
         </ScrollReveal>
 
-        {/* Impact Numbers */}
+        {/* Experience & Projects */}
         <ScrollReveal delay={0.16}>
           <div className="rounded-xl border border-border/20 bg-card/30 p-5 h-full transition-all duration-300 hover:border-primary/20 hover:bg-card/50">
             <div className="flex items-center gap-2 pb-3 mb-4 border-b border-border/60">
-              <GitBranch className="h-4 w-4 text-primary" />
-              <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Impact</h3>
+              <Briefcase className="h-4 w-4 text-primary" />
+              <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Experience</h3>
             </div>
             <div className="space-y-3">
               <div>
-                <p className="text-2xl font-bold text-gradient">1000+</p>
-                <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Hotels served</p>
+                <p className="text-2xl font-bold text-gradient">2+</p>
+                <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Years of experience</p>
               </div>
               <div>
-                <p className="text-2xl font-bold text-gradient">10K+</p>
-                <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Daily settlements</p>
+                <p className="text-2xl font-bold text-gradient">5+</p>
+                <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Projects delivered</p>
               </div>
             </div>
           </div>

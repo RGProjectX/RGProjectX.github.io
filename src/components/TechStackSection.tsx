@@ -1,5 +1,6 @@
 import { FaJava, FaDocker, FaReact, FaGitAlt } from "react-icons/fa";
-import { SiSpringboot, SiApachekafka, SiKubernetes, SiRedis, SiMysql, SiMongodb, SiTypescript, SiRabbitmq, SiJenkins, SiHibernate, SiCloudflareworkers, SiAnthropic } from "react-icons/si";
+import { SiSpringboot, SiApachekafka, SiKubernetes, SiRedis, SiMysql, SiMongodb, SiTypescript, SiRabbitmq, SiJenkins, SiHibernate, SiCloudflareworkers, SiAnthropic, SiPostman, SiAngular } from "react-icons/si";
+import { FaAws } from "react-icons/fa";
 import { VscGithub } from "react-icons/vsc";
 import ScrollReveal from "@/components/ScrollReveal";
 import { ReactNode } from "react";
@@ -18,6 +19,8 @@ const row1: TechItem[] = [
   { name: "Docker", icon: <FaDocker />, color: "#2496ED" },
   { name: "Kubernetes", icon: <SiKubernetes />, color: "#326CE5" },
   { name: "Kafka", icon: <SiApachekafka />, color: "#E8E8E8" },
+  { name: "Angular", icon: <SiAngular />, color: "#DD0031" },
+  { name: "AWS", icon: <FaAws />, color: "#FF9900" },
 ];
 
 const row2: TechItem[] = [
@@ -31,6 +34,7 @@ const row2: TechItem[] = [
   { name: "Hibernate", icon: <SiHibernate />, color: "#59666C" },
   { name: "Claude", icon: <SiAnthropic />, color: "#D4A574" },
   { name: "Cloudflare", icon: <SiCloudflareworkers />, color: "#F6821F" },
+  { name: "Postman", icon: <SiPostman />, color: "#FF6C37" },
 ];
 
 const TechPill = ({ tech }: { tech: TechItem }) => (
