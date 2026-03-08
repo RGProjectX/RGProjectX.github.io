@@ -1,14 +1,29 @@
 import { ArrowRight, Download, MapPin } from "lucide-react";
+import { motion } from "framer-motion";
+import { FaJava, FaDocker, FaReact, FaGitAlt } from "react-icons/fa";
+import { SiSpringboot, SiApachekafka, SiKubernetes, SiRedis, SiMysql, SiMongodb } from "react-icons/si";
+import { ReactNode } from "react";
 
-const floatingTech = [
-  { label: "Java", x: "left-[5%]", y: "top-[15%]", delay: "0s", size: "text-sm" },
-  { label: "Spring Boot", x: "left-[20%]", y: "top-[55%]", delay: "0.8s", size: "text-xs" },
-  { label: "Kafka", x: "right-[15%]", y: "top-[10%]", delay: "1.2s", size: "text-sm" },
-  { label: "React", x: "right-[5%]", y: "top-[45%]", delay: "2s", size: "text-xs" },
-  { label: "Docker", x: "left-[10%]", y: "bottom-[20%]", delay: "1.6s", size: "text-xs" },
-  { label: "Kubernetes", x: "right-[20%]", y: "bottom-[15%]", delay: "0.4s", size: "text-xs" },
-  { label: "Redis", x: "right-[35%]", y: "top-[25%]", delay: "2.4s", size: "text-sm" },
-  { label: "MySQL", x: "left-[35%]", y: "bottom-[30%]", delay: "1.8s", size: "text-xs" },
+interface FloatingIcon {
+  icon: ReactNode;
+  x: string;
+  y: string;
+  duration: number;
+  delay: number;
+  size: string;
+}
+
+const floatingIcons: FloatingIcon[] = [
+  { icon: <FaJava />, x: "6%", y: "12%", duration: 7, delay: 0, size: "text-4xl" },
+  { icon: <SiSpringboot />, x: "18%", y: "58%", duration: 8, delay: 1, size: "text-3xl" },
+  { icon: <SiApachekafka />, x: "82%", y: "14%", duration: 6.5, delay: 0.5, size: "text-3xl" },
+  { icon: <FaReact />, x: "90%", y: "50%", duration: 7.5, delay: 1.5, size: "text-4xl" },
+  { icon: <FaDocker />, x: "8%", y: "78%", duration: 9, delay: 2, size: "text-3xl" },
+  { icon: <SiKubernetes />, x: "78%", y: "76%", duration: 6, delay: 0.8, size: "text-3xl" },
+  { icon: <SiRedis />, x: "72%", y: "28%", duration: 8.5, delay: 1.2, size: "text-2xl" },
+  { icon: <SiMysql />, x: "28%", y: "82%", duration: 7, delay: 2.5, size: "text-3xl" },
+  { icon: <SiMongodb />, x: "14%", y: "32%", duration: 8, delay: 0.3, size: "text-2xl" },
+  { icon: <FaGitAlt />, x: "88%", y: "85%", duration: 7.5, delay: 1.8, size: "text-2xl" },
 ];
 
 const stats = [
@@ -29,19 +44,31 @@ const HeroSection = () => {
       </div>
 
       {/* Floating tech icons */}
-      <div className="absolute inset-0 pointer-events-none hidden lg:block">
-        {floatingTech.map((tech) => (
-          <div
-            key={tech.label}
-            className={`absolute ${tech.x} ${tech.y} animate-float`}
-            style={{ animationDelay: tech.delay }}
+      <div className="absolute inset-0 z-0 pointer-events-none hidden md:block">
+        {floatingIcons.map((item, i) => (
+          <motion.div
+            key={i}
+            className={`absolute ${item.size} text-primary/[0.12]`}
+            style={{ left: item.x, top: item.y, willChange: "transform" }}
+            animate={{
+              y: [0, -18, 0, 12, 0],
+              x: [0, 8, 0, -6, 0],
+              rotate: [0, 5, 0, -3, 0],
+            }}
+            transition={{
+              duration: item.duration,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: item.delay,
+            }}
           >
-            <div className="glass rounded-lg px-3 py-1.5 font-medium text-foreground/50 shadow-lg border border-primary/10">
-              <span className={tech.size}>{tech.label}</span>
-            </div>
-          </div>
+            {item.icon}
+          </motion.div>
         ))}
       </div>
+
+      {/* Gradient overlay for text readability */}
+      <div className="absolute inset-0 z-[1] pointer-events-none bg-gradient-to-b from-background/70 via-background/50 to-background/80" />
 
       <div className="container-narrow relative z-10 px-6 py-28">
         <div className="max-w-3xl mx-auto text-center space-y-8">
