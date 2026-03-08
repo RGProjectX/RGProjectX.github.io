@@ -10,7 +10,7 @@ const BentoGridSection = () => (
 
         {/* Domain Expertise — spans 2 cols */}
         <ScrollReveal delay={0}>
-          <div className="glass rounded-2xl p-5 h-full col-span-1">
+          <div className="rounded-xl border border-border/20 bg-card/30 p-5 h-full col-span-1 transition-all duration-300 hover:border-primary/20 hover:bg-card/50">
             <div className="flex items-center gap-2 mb-4">
               <Layers className="h-4 w-4 text-primary" />
               <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Domain</h3>
@@ -32,7 +32,7 @@ const BentoGridSection = () => (
 
         {/* Core Stack */}
         <ScrollReveal delay={0.08}>
-          <div className="glass rounded-2xl p-5 h-full">
+          <div className="rounded-xl border border-border/20 bg-card/30 p-5 h-full transition-all duration-300 hover:border-primary/20 hover:bg-card/50">
             <div className="flex items-center gap-2 mb-4">
               <Code2 className="h-4 w-4 text-primary" />
               <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Stack</h3>
@@ -57,7 +57,7 @@ const BentoGridSection = () => (
 
         {/* Impact Numbers */}
         <ScrollReveal delay={0.16}>
-          <div className="glass rounded-2xl p-5 h-full">
+          <div className="rounded-xl border border-border/20 bg-card/30 p-5 h-full transition-all duration-300 hover:border-primary/20 hover:bg-card/50">
             <div className="flex items-center gap-2 mb-4">
               <GitBranch className="h-4 w-4 text-primary" />
               <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Impact</h3>
@@ -77,7 +77,7 @@ const BentoGridSection = () => (
 
         {/* Location & Availability */}
         <ScrollReveal delay={0.24}>
-          <div className="glass rounded-2xl p-5 h-full flex flex-col justify-between">
+          <div className="rounded-xl border border-border/20 bg-card/30 p-5 h-full flex flex-col justify-between transition-all duration-300 hover:border-primary/20 hover:bg-card/50">
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <MapPin className="h-4 w-4 text-primary" />

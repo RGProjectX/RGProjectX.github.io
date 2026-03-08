@@ -60,7 +60,7 @@ const ProjectsSection = () => (
                   </span>
                 </div>
 
-                <div className="flex-1 glass glass-hover rounded-2xl p-6 md:p-8">
+                <div className="flex-1 rounded-xl border border-border/20 bg-card/30 p-6 md:p-8 transition-all duration-300 hover:border-primary/20 hover:bg-card/50">
                   <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-4">
                     <div>
                       <div className="flex items-center gap-3 mb-2">
