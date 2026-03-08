@@ -4,7 +4,7 @@ import HeroSection from "@/components/HeroSection";
 import WhatIBuildSection from "@/components/WhatIBuildSection";
 import ExperienceSection from "@/components/ExperienceSection";
 import ProjectsSection from "@/components/ProjectsSection";
-import ArchitectureSection from "@/components/ArchitectureSection";
+import ArchitectureAnimationSection from "@/components/ArchitectureAnimationSection";
 import TechStackSection from "@/components/TechStackSection";
 import BlogSection from "@/components/BlogSection";
 import ContactSection from "@/components/ContactSection";
@@ -40,7 +40,7 @@ const Index = () => {
       <div data-animate className="opacity-0"><WhatIBuildSection /></div>
       <div data-animate className="opacity-0"><ExperienceSection /></div>
       <div data-animate className="opacity-0"><ProjectsSection /></div>
-      <div data-animate className="opacity-0"><ArchitectureSection /></div>
+      <div data-animate className="opacity-0"><ArchitectureAnimationSection /></div>
       <div data-animate className="opacity-0"><TechStackSection /></div>
       <div data-animate className="opacity-0"><BlogSection /></div>
       <div data-animate className="opacity-0"><ContactSection /></div>
