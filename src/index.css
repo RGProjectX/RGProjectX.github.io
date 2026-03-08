@@ -199,6 +199,11 @@
   50% { transform: translateY(-10px); }
 }
 
+@keyframes ray-shimmer {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.7; }
+}
+
 @keyframes pulse-soft {
   0%, 100% { opacity: 0.4; }
   50% { opacity: 0.8; }
