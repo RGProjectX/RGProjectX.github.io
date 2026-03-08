@@ -52,8 +52,8 @@ const HeroSection = () => {
             {/* Window dots */}
             <div className="flex gap-2 mb-4">
               <span className="h-3 w-3 rounded-full bg-destructive/60" />
-              <span className="h-3 w-3 rounded-full bg-yellow-400/60" />
-              <span className="h-3 w-3 rounded-full bg-emerald-400/60" />
+              <span className="h-3 w-3 rounded-full bg-muted-foreground/40" />
+              <span className="h-3 w-3 rounded-full bg-muted-foreground/30" />
             </div>
 
             <pre className="text-muted-foreground overflow-x-auto">
