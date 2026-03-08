@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Download } from "lucide-react";
+import { Menu, X, Download, Command } from "lucide-react";
 
 const navLinks = [
   { label: "About", href: "#about" },
   { label: "Experience", href: "#experience" },
   { label: "Projects", href: "#projects" },
-  { label: "Architecture", href: "#architecture" },
   { label: "Blog", href: "#blog" },
   { label: "Contact", href: "#contact" },
 ];
@@ -27,15 +26,15 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 h-16 flex items-center justify-between px-6 md:px-10 transition-all duration-500 ${
-        scrolled ? "glass border-b border-border/50" : "bg-transparent"
+      className={`fixed top-0 left-0 right-0 z-50 h-14 flex items-center justify-between px-6 md:px-10 transition-all duration-500 ${
+        scrolled ? "glass border-b border-border/30" : "bg-transparent"
       }`}
     >
-      <a href="#" className="text-lg font-bold text-foreground tracking-tight">
-        Rohit<span className="text-gradient"> Ghorui</span>
+      <a href="#" className="text-base font-bold text-foreground tracking-tight">
+        RG
       </a>
 
-      <div className="hidden lg:flex items-center gap-7">
+      <div className="hidden lg:flex items-center gap-8">
         {navLinks.map((link) => (
           <button
             key={link.href}
@@ -45,7 +44,14 @@ const Navbar = () => {
             {link.label}
           </button>
         ))}
-        <a href="/Rohit_Ghorui_Resume.pdf" download className="btn-glow text-[13px] font-semibold text-primary-foreground px-4 py-2 rounded-lg flex items-center gap-2 transition-all duration-300">
+      </div>
+
+      <div className="hidden lg:flex items-center gap-3">
+        <a
+          href="/Rohit_Ghorui_Resume.pdf"
+          download
+          className="text-[13px] font-medium text-muted-foreground hover:text-foreground transition-colors duration-300 flex items-center gap-1.5"
+        >
           <Download className="h-3.5 w-3.5" />
           Resume
         </a>
@@ -59,7 +65,7 @@ const Navbar = () => {
       </button>
 
       {mobileOpen && (
-        <div className="absolute top-16 left-0 right-0 glass border-b border-border/50 p-6 flex flex-col gap-4 lg:hidden animate-fade-in">
+        <div className="absolute top-14 left-0 right-0 glass border-b border-border/30 p-6 flex flex-col gap-4 lg:hidden animate-fade-in">
           {navLinks.map((link) => (
             <button
               key={link.href}
@@ -69,7 +75,11 @@ const Navbar = () => {
               {link.label}
             </button>
           ))}
-          <a href="/Rohit_Ghorui_Resume.pdf" download className="btn-glow text-sm font-semibold text-primary-foreground px-4 py-2 rounded-lg flex items-center gap-2 w-fit transition-all duration-300">
+          <a
+            href="/Rohit_Ghorui_Resume.pdf"
+            download
+            className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1.5"
+          >
             <Download className="h-4 w-4" />
             Resume
           </a>

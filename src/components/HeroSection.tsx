@@ -1,165 +1,147 @@
-import { ArrowRight, Download, MapPin } from "lucide-react";
+import { ArrowRight, Download, MapPin, Copy } from "lucide-react";
 import { FaGithub, FaLinkedinIn } from "react-icons/fa";
 import { motion } from "framer-motion";
-import { FaJava, FaDocker, FaReact, FaGitAlt } from "react-icons/fa";
-import { SiSpringboot, SiApachekafka, SiKubernetes, SiRedis, SiMysql, SiMongodb } from "react-icons/si";
-import { ReactNode } from "react";
-import LightRays from "./LightRays";
+import { useState, useEffect } from "react";
 
-interface FloatingIcon {
-  icon: ReactNode;
-  x: string;
-  y: string;
-  duration: number;
-  delay: number;
-  size: string;
-}
-
-const floatingIcons: FloatingIcon[] = [
-  { icon: <FaJava />, x: "6%", y: "12%", duration: 7, delay: 0, size: "text-4xl" },
-  { icon: <SiSpringboot />, x: "18%", y: "58%", duration: 8, delay: 1, size: "text-3xl" },
-  { icon: <SiApachekafka />, x: "82%", y: "14%", duration: 6.5, delay: 0.5, size: "text-3xl" },
-  { icon: <FaReact />, x: "90%", y: "50%", duration: 7.5, delay: 1.5, size: "text-4xl" },
-  { icon: <FaDocker />, x: "8%", y: "78%", duration: 9, delay: 2, size: "text-3xl" },
-  { icon: <SiKubernetes />, x: "78%", y: "76%", duration: 6, delay: 0.8, size: "text-3xl" },
-  { icon: <SiRedis />, x: "72%", y: "28%", duration: 8.5, delay: 1.2, size: "text-2xl" },
-  { icon: <SiMysql />, x: "28%", y: "82%", duration: 7, delay: 2.5, size: "text-3xl" },
-  { icon: <SiMongodb />, x: "14%", y: "32%", duration: 8, delay: 0.3, size: "text-2xl" },
-  { icon: <FaGitAlt />, x: "88%", y: "85%", duration: 7.5, delay: 1.8, size: "text-2xl" },
-];
-
-const stats = [
-  { value: "2+", label: "Years Experience" },
-  { value: "1000+", label: "Hotels Served" },
-  { value: "5+", label: "Production Systems" },
-  { value: "10+", label: "Technologies" },
-];
+const getGreeting = () => {
+  const hour = new Date().getHours();
+  if (hour < 12) return { text: "Good Morning", emoji: "☀️" };
+  if (hour < 17) return { text: "Good Afternoon", emoji: "🌤️" };
+  return { text: "Good Evening", emoji: "🌙" };
+};
 
 const HeroSection = () => {
+  const [greeting, setGreeting] = useState(getGreeting());
+
+  useEffect(() => {
+    const interval = setInterval(() => setGreeting(getGreeting()), 60000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Light Rays — Layer 1 */}
-      <LightRays />
-
-
-      {/* Background radial glows */}
+    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
+      {/* Subtle gradient background */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="glow-orb top-[10%] left-[20%] h-[500px] w-[500px] bg-primary/12 animate-pulse-soft" />
-        <div className="glow-orb bottom-[10%] right-[10%] h-[600px] w-[600px] bg-secondary/8 animate-pulse-soft" style={{ animationDelay: "2s" }} />
-        <div className="glow-orb top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[800px] w-[800px] bg-primary/4" />
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-primary/8 rounded-full blur-[120px]" />
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[1200px] h-[400px] bg-secondary/6 rounded-full blur-[100px]" />
       </div>
 
-      {/* Floating tech icons */}
-      <div className="absolute inset-0 z-0 pointer-events-none hidden md:block">
-        {floatingIcons.map((item, i) => (
-          <motion.div
-            key={i}
-            className={`absolute ${item.size} text-primary/[0.4]`}
-            style={{ left: item.x, top: item.y, willChange: "transform" }}
-            animate={{
-              y: [0, -18, 0, 12, 0],
-              x: [0, 8, 0, -6, 0],
-              rotate: [0, 5, 0, -3, 0],
-            }}
-            transition={{
-              duration: item.duration,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: item.delay,
-            }}
-          >
-            <div className="relative">
-              <div className="absolute inset-0 -m-6 rounded-full bg-primary/[0.08] blur-2xl" />
-              <span className="relative">{item.icon}</span>
-            </div>
-          </motion.div>
-        ))}
-      </div>
-
-      {/* Gradient overlay for text readability */}
-      <div className="absolute inset-0 z-[1] pointer-events-none bg-gradient-to-b from-background/70 via-background/50 to-background/80" />
-
-      <div className="container-narrow relative z-10 px-6 py-28">
-        <div className="max-w-3xl mx-auto text-center space-y-8">
-          {/* Badges */}
-          <div className="flex justify-center flex-wrap gap-3">
-            <div className="glass rounded-full px-4 py-1.5 text-sm text-muted-foreground flex items-center gap-2">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full rounded-full bg-primary opacity-75 animate-pulse-ring" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
-              </span>
-              Available for opportunities
-            </div>
-            <div className="glass rounded-full px-3 py-1.5 text-sm text-muted-foreground flex items-center gap-1.5">
-              <MapPin className="h-3.5 w-3.5" />
-              Mumbai, India
-            </div>
+      {/* Content */}
+      <div className="relative z-10 text-center px-6 max-w-4xl mx-auto space-y-8">
+        {/* Greeting pill */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="flex justify-center"
+        >
+          <div className="glass rounded-full px-5 py-2 text-sm text-muted-foreground flex items-center gap-2">
+            <span>{greeting.emoji}</span>
+            <span>{greeting.text}</span>
           </div>
+        </motion.div>
 
-          {/* Intro */}
-          <p className="text-sm uppercase tracking-[0.3em] text-primary font-semibold">
-            Hi, I'm Rohit
-          </p>
-
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.08]">
-            <span className="text-foreground">Building </span>
-            <span className="text-gradient">Scalable Backend Systems</span>
+        {/* Main headline */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.15 }}
+        >
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05]">
+            <span className="text-foreground">Code that </span>
+            <span className="italic text-foreground/90">scales.</span>
             <br />
-            <span className="text-foreground">& Fintech Platforms</span>
+            <span className="italic text-gradient">Engineering that ships.</span>
           </h1>
+        </motion.div>
 
-          <p className="text-muted-foreground leading-relaxed max-w-2xl mx-auto text-base md:text-lg">
-            Java Full Stack Developer specializing in Spring Boot microservices, distributed systems, and payment platforms. 
-            Experienced in building high-scale backend systems used by hotel booking and fintech platforms.
-          </p>
+        {/* Subtitle with inline photo */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="flex items-center justify-center gap-3 text-lg md:text-xl text-muted-foreground"
+        >
+          <span>Hello, I'm</span>
+          <span className="font-semibold text-foreground">Rohit Ghorui</span>
+          <span className="flex items-center gap-1.5 text-muted-foreground">
+            <MapPin className="h-4 w-4" />
+            Mumbai
+          </span>
+          <span>—</span>
+          <span>a Java Full Stack Developer</span>
+        </motion.div>
 
-          <div className="flex justify-center flex-wrap gap-4 pt-2">
-            <button
-              className="btn-glow text-sm font-semibold text-primary-foreground px-7 py-3.5 rounded-xl flex items-center gap-2 transition-all duration-300"
-              onClick={() => document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" })}
-            >
-              View Projects
-              <ArrowRight className="h-4 w-4" />
-            </button>
+        {/* CTAs */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.45 }}
+          className="flex items-center justify-center flex-wrap gap-4 pt-2"
+        >
+          <button
+            className="group glass glass-hover text-sm font-semibold text-foreground pl-6 pr-4 py-3 rounded-full flex items-center gap-3 transition-all duration-300"
+            onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
+          >
+            Let's Connect
+            <span className="h-8 w-8 rounded-full bg-foreground flex items-center justify-center group-hover:bg-primary transition-colors">
+              <ArrowRight className="h-4 w-4 text-background" />
+            </span>
+          </button>
+
+          <a
+            href="mailto:ghorairohit12@gmail.com"
+            className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <Copy className="h-4 w-4" />
+            ghorairohit12@gmail.com
+          </a>
+        </motion.div>
+
+        {/* Social links */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="flex justify-center gap-3 pt-2"
+        >
+          {[
+            { icon: FaGithub, href: "https://github.com/rohitghorui", label: "GitHub" },
+            { icon: FaLinkedinIn, href: "https://linkedin.com/in/rohit-ghorui", label: "LinkedIn" },
+          ].map((s) => (
             <a
-              href="/Rohit_Ghorui_Resume.pdf"
-              download
-              className="glass glass-hover text-sm font-semibold text-foreground px-7 py-3.5 rounded-xl flex items-center gap-2"
-            >
-              <Download className="h-4 w-4" />
-              Download Resume
-            </a>
-          </div>
-
-          {/* Social links */}
-          <div className="flex justify-center gap-3 pt-1">
-            <a
-              href="https://github.com/rohitghorui"
+              key={s.label}
+              href={s.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="glass h-10 w-10 rounded-full flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/30 transition-all duration-300"
+              className="glass h-10 w-10 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-foreground/20 transition-all duration-300"
             >
-              <FaGithub className="h-4 w-4" />
+              <s.icon className="h-4 w-4" />
             </a>
-            <a
-              href="https://linkedin.com/in/rohit-ghorui"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="glass h-10 w-10 rounded-full flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/30 transition-all duration-300"
-            >
-              <FaLinkedinIn className="h-4 w-4" />
-            </a>
-          </div>
+          ))}
+        </motion.div>
+      </div>
 
-          {/* Stats */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-10 border-t border-border/30 max-w-xl mx-auto">
-            {stats.map((stat) => (
-              <div key={stat.label} className="space-y-1">
-                <p className="text-3xl font-extrabold text-gradient">{stat.value}</p>
-                <p className="text-[10px] text-muted-foreground font-medium uppercase tracking-widest">{stat.label}</p>
-              </div>
-            ))}
-          </div>
+      {/* Earth curve at bottom */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[200%] md:w-[140%] pointer-events-none">
+        <div className="relative">
+          {/* Glow above the curve */}
+          <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-[60%] h-40 bg-gradient-to-t from-primary/20 via-secondary/10 to-transparent blur-2xl" />
+          
+          {/* The curve itself */}
+          <svg viewBox="0 0 1440 320" className="w-full" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="curve-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="hsl(248, 100%, 71%)" stopOpacity="0" />
+                <stop offset="30%" stopColor="hsl(248, 100%, 71%)" stopOpacity="0.4" />
+                <stop offset="50%" stopColor="hsl(222, 100%, 68%)" stopOpacity="0.6" />
+                <stop offset="70%" stopColor="hsl(248, 100%, 71%)" stopOpacity="0.4" />
+                <stop offset="100%" stopColor="hsl(248, 100%, 71%)" stopOpacity="0" />
+              </linearGradient>
+            </defs>
+            <ellipse cx="720" cy="600" rx="900" ry="280" fill="none" stroke="url(#curve-gradient)" strokeWidth="1.5" />
+            <ellipse cx="720" cy="600" rx="900" ry="280" fill="hsl(240, 12%, 5%)" fillOpacity="0.3" />
+          </svg>
         </div>
       </div>
     </section>

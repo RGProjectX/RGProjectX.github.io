@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
+import BentoGridSection from "@/components/BentoGridSection";
 import WhatIBuildSection from "@/components/WhatIBuildSection";
 import ExperienceSection from "@/components/ExperienceSection";
 import EducationSection from "@/components/EducationSection";
@@ -20,6 +21,12 @@ const Index = () => {
       <Navbar />
       <HeroSection />
       <SectionTransition>
+        <BentoGridSection />
+      </SectionTransition>
+      <SectionTransition>
+        <TechStackSection />
+      </SectionTransition>
+      <SectionTransition>
         <WhatIBuildSection />
       </SectionTransition>
       <SectionTransition>
@@ -33,9 +40,6 @@ const Index = () => {
       </SectionTransition>
       <SectionTransition>
         <ArchitectureSection />
-      </SectionTransition>
-      <SectionTransition>
-        <TechStackSection />
       </SectionTransition>
       <SectionTransition>
         <BlogSection />

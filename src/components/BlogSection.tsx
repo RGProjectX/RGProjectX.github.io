@@ -5,66 +5,62 @@ const posts = [
   {
     title: "Designing Scalable Payout Systems",
     excerpt: "How to architect financial settlement workflows that handle thousands of merchant payouts daily with idempotency and fault tolerance.",
-    readTime: "8 min",
+    readTime: "8 min read",
     tag: "System Design",
+    date: "Jan 2025",
   },
   {
     title: "Handling Concurrency in Payment Workflows",
     excerpt: "Strategies for managing race conditions, distributed locks, and optimistic concurrency in high-throughput payment processing.",
-    readTime: "6 min",
+    readTime: "6 min read",
     tag: "Backend",
+    date: "Dec 2024",
   },
   {
     title: "Building Reliable Schedulers with Quartz",
     excerpt: "Implementing retry logic, job recovery, and monitoring for mission-critical batch processing systems.",
-    readTime: "5 min",
+    readTime: "5 min read",
     tag: "Infrastructure",
-  },
-  {
-    title: "Kafka vs RabbitMQ for Event-Driven Systems",
-    excerpt: "A practical comparison of messaging systems for different use cases — throughput, ordering guarantees, and operational complexity.",
-    readTime: "7 min",
-    tag: "Architecture",
+    date: "Nov 2024",
   },
 ];
 
 const BlogSection = () => (
   <section id="blog" className="section-padding relative">
-    <div className="glow-orb top-20 right-0 h-[300px] w-[300px] bg-secondary/6" />
-
     <div className="container-narrow relative z-10">
       <ScrollReveal>
-        <p className="text-sm uppercase tracking-[0.25em] text-primary font-semibold mb-3">
-          Writing
-        </p>
-        <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-          Engineering Notes
-        </h2>
-        <div className="h-1 w-16 rounded-full mb-12 bg-gradient-to-r from-primary to-secondary" />
+        <div className="flex items-baseline gap-4 mb-10">
+          <p className="text-xs uppercase tracking-[0.3em] text-primary font-semibold">
+            From The Desk
+          </p>
+          <span className="text-xs text-muted-foreground">Thoughts & writings</span>
+        </div>
       </ScrollReveal>
 
-      <div className="grid md:grid-cols-2 gap-5">
+      <div className="space-y-0 divide-y divide-border/30">
         {posts.map((post, i) => (
-          <ScrollReveal key={post.title} direction="up" delay={i * 0.1}>
-            <article className="glass glass-hover rounded-2xl p-6 group cursor-pointer flex flex-col h-full">
-              <div className="flex items-center gap-2 mb-4">
-                <span className="text-[11px] uppercase tracking-wider font-semibold text-primary bg-accent px-2.5 py-1 rounded-md">
-                  {post.tag}
-                </span>
-                <span className="flex items-center gap-1 text-xs text-muted-foreground ml-auto">
-                  <Clock className="h-3 w-3" />
-                  {post.readTime}
-                </span>
+          <ScrollReveal key={post.title} direction="up" delay={i * 0.08}>
+            <article className="group py-8 cursor-pointer flex flex-col md:flex-row md:items-start gap-4 md:gap-8">
+              <div className="flex items-center gap-3 md:w-40 shrink-0">
+                <span className="text-xs text-muted-foreground">{post.date}</span>
+                <span className="text-xs text-muted-foreground">·</span>
+                <span className="text-xs text-muted-foreground">{post.readTime}</span>
               </div>
 
-              <h3 className="text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300 flex items-start gap-2">
-                {post.title}
-                <ArrowUpRight className="h-4 w-4 shrink-0 mt-1 opacity-0 group-hover:opacity-100 transition-opacity" />
-              </h3>
-
-              <p className="text-sm text-muted-foreground leading-relaxed flex-1">
-                {post.excerpt}
-              </p>
+              <div className="flex-1">
+                <div className="mb-2">
+                  <span className="text-[10px] uppercase tracking-wider font-semibold text-primary">
+                    {post.tag}
+                  </span>
+                </div>
+                <h3 className="text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300 flex items-center gap-2">
+                  {post.title}
+                  <ArrowUpRight className="h-4 w-4 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed max-w-xl">
+                  {post.excerpt}
+                </p>
+              </div>
             </article>
           </ScrollReveal>
         ))}
