@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { FaJava, FaDocker, FaReact, FaGitAlt } from "react-icons/fa";
+import { FaJava, FaDocker, FaReact, FaGitAlt, FaAws } from "react-icons/fa";
 import { SiSpringboot, SiApachekafka, SiKubernetes, SiRedis, SiMysql, SiMongodb, SiTypescript, SiRabbitmq, SiJenkins, SiHibernate, SiCloudflareworkers, SiAnthropic, SiPostman, SiAngular } from "react-icons/si";
 import { VscGithub } from "react-icons/vsc";
 
