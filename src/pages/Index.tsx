@@ -4,7 +4,7 @@ import HeroSection from "@/components/HeroSection";
 import WhatIBuildSection from "@/components/WhatIBuildSection";
 import ExperienceSection from "@/components/ExperienceSection";
 import ProjectsSection from "@/components/ProjectsSection";
-import ArchitectureAnimationSection from "@/components/ArchitectureAnimationSection";
+
 import TechStackSection from "@/components/TechStackSection";
 import BlogSection from "@/components/BlogSection";
 import ContactSection from "@/components/ContactSection";
