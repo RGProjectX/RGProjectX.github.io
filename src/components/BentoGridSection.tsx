@@ -1,4 +1,4 @@
-import { MapPin, CreditCard, Hotel, Code2, Layers, GitBranch, Database } from "lucide-react";
+import { MapPin, CreditCard, Briefcase, Code2, Layers, Database } from "lucide-react";
 import { FaJava, FaReact, FaDocker } from "react-icons/fa";
 import { SiSpringboot, SiApachekafka, SiKubernetes, SiRedis } from "react-icons/si";
 import ScrollReveal from "@/components/ScrollReveal";
