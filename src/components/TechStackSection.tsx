@@ -14,7 +14,7 @@ const techStack: TechItem[] = [
   { name: "TypeScript", icon: <SiTypescript /> },
   { name: "Docker", icon: <FaDocker /> },
   { name: "Kubernetes", icon: <SiKubernetes /> },
-  { name: "Kafka", icon: <SiKafka /> },
+  { name: "Kafka", icon: <SiApachekafka /> },
   { name: "Redis", icon: <SiRedis /> },
   { name: "MySQL", icon: <SiMysql /> },
   { name: "MongoDB", icon: <SiMongodb /> },
