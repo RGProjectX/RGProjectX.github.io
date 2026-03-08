@@ -45,10 +45,10 @@ const Navbar = () => {
             {link.label}
           </button>
         ))}
-        <button className="btn-glow text-[13px] font-semibold text-primary-foreground px-4 py-2 rounded-lg flex items-center gap-2 transition-all duration-300">
+        <a href="/Rohit_Ghorui_Resume.pdf" download className="btn-glow text-[13px] font-semibold text-primary-foreground px-4 py-2 rounded-lg flex items-center gap-2 transition-all duration-300">
           <Download className="h-3.5 w-3.5" />
           Resume
-        </button>
+        </a>
       </div>
 
       <button
@@ -69,10 +69,10 @@ const Navbar = () => {
               {link.label}
             </button>
           ))}
-          <button className="btn-glow text-sm font-semibold text-primary-foreground px-4 py-2 rounded-lg flex items-center gap-2 w-fit transition-all duration-300">
+          <a href="/Rohit_Ghorui_Resume.pdf" download className="btn-glow text-sm font-semibold text-primary-foreground px-4 py-2 rounded-lg flex items-center gap-2 w-fit transition-all duration-300">
             <Download className="h-4 w-4" />
             Resume
-          </button>
+          </a>
         </div>
       )}
     </nav>
