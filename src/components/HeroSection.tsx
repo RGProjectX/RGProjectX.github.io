@@ -8,7 +8,7 @@ const HeroSection = () => {
         {/* Left */}
         <div className="space-y-6">
           <div className="inline-flex items-center gap-2 rounded-full border bg-card px-4 py-1.5 text-sm text-muted-foreground">
-            <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="h-2 w-2 rounded-full bg-primary animate-pulse" />
             Available for opportunities
           </div>
 
