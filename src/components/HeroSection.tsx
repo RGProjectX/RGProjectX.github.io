@@ -40,8 +40,6 @@ const HeroSection = () => {
       {/* Light Rays — Layer 1 */}
       <LightRays />
 
-      {/* Particle Field */}
-      <ParticleField />
 
       {/* Background radial glows */}
       <div className="absolute inset-0 pointer-events-none">
