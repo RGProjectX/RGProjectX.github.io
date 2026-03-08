@@ -12,24 +12,12 @@ interface ScrollRevealProps {
   once?: boolean;
 }
 
-const getInitial = (direction: Direction): Variant => {
-  switch (direction) {
-    case "up": return { opacity: 0, y: 40 };
-    case "down": return { opacity: 0, y: -40 };
-    case "left": return { opacity: 0, x: -40 };
-    case "right": return { opacity: 0, x: 40 };
-    case "scale": return { opacity: 0, scale: 0.92 };
-  }
-};
-
-const getAnimate = (direction: Direction): Variant => {
-  switch (direction) {
-    case "up":
-    case "down": return { opacity: 1, y: 0 };
-    case "left":
-    case "right": return { opacity: 1, x: 0 };
-    case "scale": return { opacity: 1, scale: 1 };
-  }
+const variants: Record<Direction, { initial: Record<string, number>; animate: Record<string, number> }> = {
+  up: { initial: { opacity: 0, y: 40 }, animate: { opacity: 1, y: 0 } },
+  down: { initial: { opacity: 0, y: -40 }, animate: { opacity: 1, y: 0 } },
+  left: { initial: { opacity: 0, x: -40 }, animate: { opacity: 1, x: 0 } },
+  right: { initial: { opacity: 0, x: 40 }, animate: { opacity: 1, x: 0 } },
+  scale: { initial: { opacity: 0, scale: 0.92 }, animate: { opacity: 1, scale: 1 } },
 };
 
 const ScrollReveal = ({
