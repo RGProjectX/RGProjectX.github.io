@@ -16,38 +16,38 @@
     --popover: 240 10% 10%;
     --popover-foreground: 240 5% 97%;
 
-    --primary: 248 100% 71%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 40 95% 55%;
+    --primary-foreground: 0 0% 5%;
 
-    --secondary: 222 100% 68%;
+    --secondary: 30 90% 50%;
     --secondary-foreground: 0 0% 100%;
 
     --muted: 240 6% 20%;
     --muted-foreground: 240 4% 65%;
 
-    --accent: 248 60% 15%;
-    --accent-foreground: 248 100% 80%;
+    --accent: 40 50% 12%;
+    --accent-foreground: 40 95% 70%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
     --border: 240 6% 15%;
     --input: 240 6% 15%;
-    --ring: 248 100% 71%;
+    --ring: 40 95% 55%;
 
     --radius: 0.875rem;
 
-    --gradient-start: 248 100% 71%;
-    --gradient-end: 222 100% 68%;
+    --gradient-start: 40 95% 55%;
+    --gradient-end: 30 90% 50%;
 
     --sidebar-background: 240 12% 5%;
     --sidebar-foreground: 240 5% 97%;
-    --sidebar-primary: 248 100% 71%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 248 60% 15%;
-    --sidebar-accent-foreground: 248 100% 80%;
+    --sidebar-primary: 40 95% 55%;
+    --sidebar-primary-foreground: 0 0% 5%;
+    --sidebar-accent: 40 50% 12%;
+    --sidebar-accent-foreground: 40 95% 70%;
     --sidebar-border: 240 6% 15%;
-    --sidebar-ring: 248 100% 71%;
+    --sidebar-ring: 40 95% 55%;
   }
 }
 
@@ -101,17 +101,17 @@
     background: rgba(255, 255, 255, 0.07);
     border-color: rgba(255, 255, 255, 0.14);
     box-shadow:
-      0 8px 32px rgba(124, 108, 255, 0.08),
-      0 0 0 1px rgba(124, 108, 255, 0.05);
+      0 8px 32px rgba(218, 165, 32, 0.08),
+      0 0 0 1px rgba(218, 165, 32, 0.05);
     transform: translateY(-2px);
   }
 
   .btn-glow {
     background: linear-gradient(135deg, hsl(var(--gradient-start)), hsl(var(--gradient-end)));
-    box-shadow: 0 4px 20px rgba(124, 108, 255, 0.35), 0 0 40px rgba(124, 108, 255, 0.1);
+    box-shadow: 0 4px 20px rgba(218, 165, 32, 0.35), 0 0 40px rgba(218, 165, 32, 0.1);
   }
   .btn-glow:hover {
-    box-shadow: 0 6px 30px rgba(124, 108, 255, 0.5), 0 0 60px rgba(124, 108, 255, 0.15);
+    box-shadow: 0 6px 30px rgba(218, 165, 32, 0.5), 0 0 60px rgba(218, 165, 32, 0.15);
   }
 
   .glow-orb {
