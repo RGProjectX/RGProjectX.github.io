@@ -1,7 +1,8 @@
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
-import { Briefcase, MapPin, Building2, Calendar, TrendingUp } from "lucide-react";
-import { ReactNode } from "react";
+import { Briefcase, MapPin, Building2, Calendar, TrendingUp, ChevronRight } from "lucide-react";
+import { ReactNode, useState } from "react";
+import ScrollReveal from "@/components/ScrollReveal";
 
 interface Project {
   name: string;
@@ -74,132 +75,148 @@ const experiences: Experience[] = [
   },
 ];
 
+const ProjectCard = ({ project, delay }: { project: Project; delay: number }) => {
+  const [expanded, setExpanded] = useState(false);
+  const visibleHighlights = expanded ? project.highlights : project.highlights.slice(0, 3);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 12 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.4, delay }}
+      className="group/project rounded-xl border border-border/20 bg-card/30 p-5 transition-all duration-300 hover:border-primary/20 hover:bg-card/50"
+    >
+      <h4 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
+        <span className="flex items-center justify-center h-6 w-6 rounded-md bg-primary/10">
+          <Briefcase className="h-3 w-3 text-primary" />
+        </span>
+        {project.name}
+      </h4>
+
+      <ul className="space-y-2.5 mb-4">
+        {visibleHighlights.map((h, i) => (
+          <li key={i} className="text-sm text-muted-foreground flex gap-2.5 leading-relaxed">
+            <ChevronRight className="h-3.5 w-3.5 text-primary/50 mt-0.5 shrink-0" />
+            <span>{h}</span>
+          </li>
+        ))}
+      </ul>
+
+      {project.highlights.length > 3 && (
+        <button
+          onClick={() => setExpanded(!expanded)}
+          className="text-xs text-primary/70 hover:text-primary mb-4 transition-colors duration-200 flex items-center gap-1"
+        >
+          {expanded ? "Show less" : `+${project.highlights.length - 3} more`}
+        </button>
+      )}
+
+      <div className="flex flex-wrap gap-1.5">
+        {project.tech.map((t) => (
+          <span
+            key={t}
+            className="text-[11px] px-2.5 py-0.5 rounded-full bg-primary/[0.06] text-primary/70 border border-primary/10 font-medium"
+          >
+            {t}
+          </span>
+        ))}
+      </div>
+    </motion.div>
+  );
+};
+
 const ExperienceSection = () => (
   <section id="experience" className="section-padding relative overflow-hidden">
-    <div className="glow-orb bottom-0 left-0 h-[400px] w-[400px] bg-primary/8" />
-    <div className="glow-orb top-20 right-0 h-[250px] w-[250px] bg-secondary/5" />
-
     <div className="container-narrow relative z-10">
-      <p className="text-sm uppercase tracking-[0.25em] text-primary font-semibold mb-3">
-        Career Path
-      </p>
-      <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-2">Experience</h2>
-      <div className="h-1 w-12 rounded-full mb-10 bg-gradient-to-r from-primary to-secondary" />
+      <ScrollReveal>
+        <p className="text-sm uppercase tracking-[0.25em] text-primary font-semibold mb-3">
+          Career Path
+        </p>
+        <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-2">Experience</h2>
+        <div className="h-1 w-12 rounded-full mb-12 bg-gradient-to-r from-primary to-secondary" />
+      </ScrollReveal>
 
       <div className="relative">
-        {/* Timeline line */}
-        <div className="absolute left-[18px] md:left-5 top-0 bottom-0 w-[2px] bg-gradient-to-b from-primary/50 via-primary/20 to-transparent" />
+        {/* Timeline spine */}
+        <div className="absolute left-[19px] md:left-[21px] top-2 bottom-0 w-px">
+          <div className="h-full w-full bg-gradient-to-b from-primary/60 via-primary/20 to-transparent" />
+        </div>
 
-        <div className="space-y-14">
+        <div className="space-y-16">
           {experiences.map((exp, idx) => (
             <motion.div
               key={idx}
               className="relative pl-14 md:pl-16"
-              initial={{ opacity: 0, x: -30 }}
+              initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.5, delay: idx * 0.15 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.5, delay: idx * 0.15, ease: [0.25, 0.1, 0.25, 1] }}
             >
               {/* Timeline node */}
-              <div className="absolute left-[18px] md:left-5 top-6 -translate-x-1/2">
+              <div className="absolute left-[19px] md:left-[21px] top-1 -translate-x-1/2">
                 <div className="relative flex items-center justify-center">
                   {idx === 0 && (
-                    <div
-                      className="absolute h-8 w-8 rounded-full border border-primary/30 animate-ping"
-                      style={{ animationDuration: "3s" }}
+                    <motion.div
+                      className="absolute h-10 w-10 rounded-full border border-primary/20"
+                      animate={{ scale: [1, 1.8, 1], opacity: [0.4, 0, 0.4] }}
+                      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                     />
                   )}
                   <div
-                    className={`h-3 w-3 rounded-full ${
+                    className={`h-3.5 w-3.5 rounded-full border-2 ${
                       idx === 0
-                        ? "bg-primary shadow-[0_0_12px_rgba(124,108,255,0.8)]"
-                        : "bg-primary/50 shadow-[0_0_8px_rgba(124,108,255,0.4)]"
+                        ? "bg-primary border-primary shadow-[0_0_16px_rgba(124,108,255,0.6)]"
+                        : "bg-background border-primary/40"
                     }`}
                   />
                 </div>
               </div>
 
-              {/* Main experience card */}
-              <motion.div
-                className="glass rounded-2xl p-6 md:p-8 transition-all duration-300 hover:scale-[1.01] hover:shadow-[0_0_40px_rgba(124,108,255,0.12)] hover:border-primary/20"
-                whileHover={{ y: -2 }}
-                transition={{ duration: 0.2 }}
-              >
-                {/* Header */}
-                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6">
-                  <div className="space-y-2">
-                    <h3 className="text-xl md:text-2xl font-bold text-foreground">{exp.role}</h3>
-                    <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+              {/* Role header - floating above card */}
+              <div className="mb-4">
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+                  <div>
+                    <h3 className="text-xl md:text-2xl font-bold text-foreground leading-tight">
+                      {exp.role}
+                    </h3>
+                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-1.5">
                       <span className="flex items-center gap-1.5 text-sm font-medium text-primary">
                         <Building2 className="h-3.5 w-3.5" />
                         {exp.company}
                       </span>
-                      <span className="flex items-center gap-1.5 text-sm text-muted-foreground">
-                        <MapPin className="h-3.5 w-3.5" />
+                      <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                        <MapPin className="h-3 w-3" />
                         {exp.location}
                       </span>
                     </div>
                   </div>
+
                   <div className="flex flex-wrap items-center gap-2">
-                    <Badge className="rounded-full px-3.5 py-1 text-xs font-medium bg-primary/10 text-primary border-primary/20 hover:bg-primary/15 shrink-0">
+                    <Badge className="rounded-full px-3 py-1 text-[11px] font-medium bg-muted/50 text-muted-foreground border-border/30 hover:bg-muted/70 shrink-0">
                       <Calendar className="h-3 w-3 mr-1.5" />
                       {exp.period}
                     </Badge>
                     {exp.impact && (
-                      <Badge className="rounded-full px-3.5 py-1 text-xs font-medium bg-secondary/10 text-secondary border-secondary/20 hover:bg-secondary/15 shrink-0">
+                      <Badge className="rounded-full px-3 py-1 text-[11px] font-semibold bg-primary/10 text-primary border-primary/20 hover:bg-primary/15 shrink-0">
                         <TrendingUp className="h-3 w-3 mr-1.5" />
                         {exp.impact}
                       </Badge>
                     )}
                   </div>
                 </div>
+              </div>
 
-                {/* Divider */}
-                <div className="h-px w-full bg-border/30 mb-6" />
-
-                {/* Projects */}
-                <div className="space-y-6">
-                  {exp.projects.map((project, pIdx) => (
-                    <motion.div
-                      key={project.name}
-                      initial={{ opacity: 0, y: 12 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.35, delay: idx * 0.1 + pIdx * 0.1 + 0.2 }}
-                    >
-                      <h4 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
-                        <Briefcase className="h-3.5 w-3.5 text-primary/70" />
-                        {project.name}
-                      </h4>
-
-                      <ul className="space-y-2 mb-4 ml-5">
-                        {project.highlights.map((h, i) => (
-                          <li key={i} className="text-sm text-muted-foreground flex gap-2 leading-relaxed">
-                            <span className="text-primary/60 mt-1 shrink-0 text-[6px]">●</span>
-                            <span>{h}</span>
-                          </li>
-                        ))}
-                      </ul>
-
-                      <div className="flex flex-wrap gap-2 ml-5">
-                        {project.tech.map((t) => (
-                          <span
-                            key={t}
-                            className="text-xs px-3 py-1 rounded-full bg-primary/8 text-primary/80 border border-primary/15 transition-colors duration-200 hover:bg-primary/15 hover:text-primary"
-                          >
-                            {t}
-                          </span>
-                        ))}
-                      </div>
-
-                      {/* Project divider (not on last) */}
-                      {pIdx < exp.projects.length - 1 && (
-                        <div className="h-px w-full bg-border/20 mt-6" />
-                      )}
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
+              {/* Project cards grid */}
+              <div className="grid gap-4 md:grid-cols-2">
+                {exp.projects.map((project, pIdx) => (
+                  <ProjectCard
+                    key={project.name}
+                    project={project}
+                    delay={idx * 0.1 + pIdx * 0.1 + 0.2}
+                  />
+                ))}
+              </div>
             </motion.div>
           ))}
         </div>
