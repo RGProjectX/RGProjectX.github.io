@@ -34,6 +34,7 @@ const row2: TechItem[] = [
   { name: "Hibernate", icon: <SiHibernate />, color: "#59666C" },
   { name: "Claude", icon: <SiAnthropic />, color: "#D4A574" },
   { name: "Cloudflare", icon: <SiCloudflareworkers />, color: "#F6821F" },
+  { name: "Postman", icon: <SiPostman />, color: "#FF6C37" },
 ];
 
 const TechPill = ({ tech }: { tech: TechItem }) => (
