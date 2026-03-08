@@ -30,6 +30,9 @@ export const techMap: Record<string, TechInfo> = {
   "Quartz Scheduler": { icon: <SiSpringboot />, color: "#6DB33F" },
   "Claude": { icon: <SiAnthropic />, color: "#D4A574" },
   "Cloudflare": { icon: <SiCloudflareworkers />, color: "#F6821F" },
+  "Postman": { icon: <SiPostman />, color: "#FF6C37" },
+  "Angular": { icon: <SiAngular />, color: "#DD0031" },
+  "AWS": { icon: <FaAws />, color: "#FF9900" },
 };
 
 export const TechBadge = ({ name }: { name: string }) => {
