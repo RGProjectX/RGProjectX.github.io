@@ -1,13 +1,15 @@
-import { ArrowRight, Download, MapPin, Copy } from "lucide-react";
+import { ArrowRight, FileText, Copy } from "lucide-react";
 import { FaGithub, FaLinkedinIn } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 
 const getGreeting = () => {
   const hour = new Date().getHours();
-  if (hour < 12) return { text: "Good Morning", emoji: "☀️" };
-  if (hour < 17) return { text: "Good Afternoon", emoji: "🌤️" };
-  return { text: "Good Evening", emoji: "🌙" };
+  // 6am–12pm Morning, 12pm–4pm Afternoon, 4pm–9pm Evening, 9pm–6am Night
+  if (hour >= 6 && hour < 12) return { text: "Good Morning", emoji: "☀️" };
+  if (hour >= 12 && hour < 16) return { text: "Good Afternoon", emoji: "🌤️" };
+  if (hour >= 16 && hour < 21) return { text: "Good Evening", emoji: "🌙" };
+  return { text: "Good Night", emoji: "🌌" };
 };
 
 const HeroSection = () => {
@@ -67,10 +69,6 @@ const HeroSection = () => {
         >
           <span>Hello, I'm</span>
           <span className="font-semibold text-foreground">Rohit Ghorui</span>
-          <span className="flex items-center gap-1.5 text-muted-foreground">
-            <MapPin className="h-4 w-4" />
-            Mumbai
-          </span>
           <span className="text-muted-foreground/50">·</span>
           <span>a Java Full Stack Developer</span>
         </motion.div>
@@ -110,14 +108,18 @@ const HeroSection = () => {
           className="flex justify-center gap-3 pt-2"
         >
           {[
-            { icon: FaGithub, href: "https://github.com/rohitghorui", label: "GitHub" },
-            { icon: FaLinkedinIn, href: "https://linkedin.com/in/rohit-ghorui", label: "LinkedIn" },
+            { icon: FaGithub, href: "https://github.com/rohitghorui", label: "GitHub", download: false },
+            { icon: FaLinkedinIn, href: "https://linkedin.com/in/rohit-ghorui", label: "LinkedIn", download: false },
+            { icon: FileText, href: "/resume.pdf", label: "Download Resume", download: true },
           ].map((s) => (
             <a
               key={s.label}
               href={s.href}
-              target="_blank"
-              rel="noopener noreferrer"
+              target={s.download ? undefined : "_blank"}
+              rel={s.download ? undefined : "noopener noreferrer"}
+              download={s.download ? "Rohit-Ghorui-Resume.pdf" : undefined}
+              aria-label={s.label}
+              title={s.label}
               className="glass h-10 w-10 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-foreground/20 transition-all duration-300"
             >
               <s.icon className="h-4 w-4" />

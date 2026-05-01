@@ -1,17 +1,50 @@
 import { useState } from "react";
+import { z } from "zod";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Mail, Phone, Linkedin, Send } from "lucide-react";
+import { Mail, Phone, Linkedin, Send, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import ScrollReveal from "@/components/ScrollReveal";
+import { supabase } from "@/integrations/supabase/client";
+
+const contactSchema = z.object({
+  name: z.string().trim().min(1, "Name is required").max(100, "Name too long"),
+  email: z.string().trim().email("Invalid email").max(255, "Email too long"),
+  message: z.string().trim().min(1, "Message is required").max(2000, "Message too long"),
+});
 
 const ContactSection = () => {
   const { toast } = useToast();
   const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [submitting, setSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const parsed = contactSchema.safeParse(form);
+    if (!parsed.success) {
+      toast({
+        title: "Please check your input",
+        description: parsed.error.issues[0]?.message ?? "Invalid form data",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setSubmitting(true);
+    const { error } = await supabase.from("contact_messages").insert(parsed.data);
+    setSubmitting(false);
+
+    if (error) {
+      toast({
+        title: "Couldn't send message",
+        description: error.message,
+        variant: "destructive",
+      });
+      return;
+    }
+
     toast({ title: "Message sent!", description: "Thanks for reaching out. I'll get back to you soon." });
     setForm({ name: "", email: "", message: "" });
   };
@@ -37,6 +70,7 @@ const ContactSection = () => {
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
                   required
+                  maxLength={100}
                   className="bg-muted/30 border-border/50 focus:border-primary/50"
                 />
               </div>
@@ -49,6 +83,7 @@ const ContactSection = () => {
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
                   required
+                  maxLength={255}
                   className="bg-muted/30 border-border/50 focus:border-primary/50"
                 />
               </div>
@@ -61,12 +96,17 @@ const ContactSection = () => {
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
                   required
+                  maxLength={2000}
                   className="bg-muted/30 border-border/50 focus:border-primary/50"
                 />
               </div>
-              <button type="submit" className="btn-glow text-sm font-semibold text-primary-foreground px-5 py-2.5 rounded-xl flex items-center gap-2 transition-all duration-300">
-                <Send className="h-4 w-4" />
-                Send Message
+              <button
+                type="submit"
+                disabled={submitting}
+                className="btn-glow text-sm font-semibold text-primary-foreground px-5 py-2.5 rounded-xl flex items-center gap-2 transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                {submitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
+                {submitting ? "Sending..." : "Send Message"}
               </button>
             </form>
           </ScrollReveal>
